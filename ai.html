@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#070b14">
+  <meta name="description" content="ARADX AI LAB — مسیر یادگیری، تحقیق و ساخت فناوری‌های هوش مصنوعی">
+  <title>ARADX AI LAB | هوش مصنوعی</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #070b14;
+      --panel: #101827;
+      --text: #f3f7ff;
+      --muted: #9aa9bf;
+      --cyan: #62e6ff;
+      --purple: #a78bfa;
+      --border: rgba(255,255,255,.10);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background:
+        radial-gradient(ellipse at 15% 15%, rgba(69,105,255,.14), transparent 38%),
+        radial-gradient(ellipse at 85% 35%, rgba(98,230,255,.09), transparent 35%),
+        var(--bg);
+      color: var(--text);
+      font-family: "Vazirmatn", sans-serif;
+      line-height: 1.9;
+      min-height: 100vh;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1100px, 90%);
+      margin: auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(7,11,20,.85);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      font-family: "Inter", sans-serif;
+      font-size: 1.4rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+
+    .brand span {
+      color: var(--cyan);
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 22px;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    .nav-links a:hover {
+      color: var(--cyan);
+    }
+
+    .hero {
+      padding: 105px 0 85px;
+      text-align: center;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 5px 16px;
+      border: 1px solid rgba(98,230,255,.3);
+      border-radius: 50px;
+      background: rgba(98,230,255,.07);
+      color: var(--cyan);
+      font-size: .85rem;
+      margin-bottom: 25px;
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 7vw, 5rem);
+      line-height: 1.25;
+      margin-bottom: 20px;
+      letter-spacing: -1px;
+    }
+
+    h1 span {
+      background: linear-gradient(90deg, var(--cyan), var(--purple));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      max-width: 700px;
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: 1.08rem;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 32px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 11px 24px;
+      border-radius: 12px;
+      font-weight: 700;
+      transition: transform .2s, background .2s;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+    }
+
+    .btn-primary {
+      background: var(--cyan);
+      color: #07111b;
+    }
+
+    .btn-secondary {
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.03);
+    }
+
+    section {
+      padding: 65px 0;
+      scroll-margin-top: 90px;
+    }
+
+    .section-title {
+      margin-bottom: 28px;
+    }
+
+    .section-title small {
+      color: var(--cyan);
+      font-family: "Inter", sans-serif;
+      letter-spacing: 2px;
+      font-size: .75rem;
+    }
+
+    h2 {
+      font-size: clamp(1.7rem, 4vw, 2.5rem);
+      margin-top: 5px;
+    }
+
+    .section-intro {
+      color: var(--muted);
+      max-width: 750px;
+      margin-top: 8px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+    .card {
+      background: linear-gradient(145deg, rgba(255,255,255,.055), rgba(255,255,255,.018));
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 25px;
+      transition: transform .2s, border-color .2s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(98,230,255,.4);
+    }
+
+    .icon {
+      font-size: 1.8rem;
+      margin-bottom: 12px;
+    }
+
+    .card h3 {
+      font-size: 1.15rem;
+      margin-bottom: 8px;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: .94rem;
+    }
+
+    .mission {
+      border: 1px solid rgba(167,139,250,.22);
+      background: linear-gradient(120deg, rgba(167,139,250,.09), rgba(98,230,255,.045));
+      border-radius: 24px;
+      padding: 35px;
+    }
+
+    .mission p {
+      color: var(--muted);
+      margin-top: 12px;
+      max-width: 850px;
+    }
+
+    .status {
+      display: inline-block;
+      color: var(--cyan);
+      background: rgba(98,230,255,.08);
+      padding: 3px 10px;
+      border-radius: 30px;
+      font-size: .78rem;
+      margin-bottom: 12px;
+    }
+
+    .project-card {
+      min-height: 210px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .project-card .status {
+      margin-top: auto;
+      margin-bottom: 0;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 25px 0;
+      margin-top: 45px;
+      color: var(--muted);
+      font-size: .88rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    @media (max-width: 760px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav {
+        padding: 12px 0;
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .nav-links {
+        gap: 14px;
+      }
+
+      .hero {
+        padding: 75px 0 55px;
+      }
+
+      .mission {
+        padding: 23px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="container nav">
+      <a class="brand" href="index.html">ARAD<span>X</span></a>
+
+      <nav class="nav-links" aria-label="منوی اصلی">
+        <a href="index.html">صفحه اصلی</a>
+        <a href="#mission">مأموریت ما</a>
+        <a href="#learning">یادگیری و تحقیق</a>
+        <a href="#projects">پروژه‌های آینده</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="hero">
+      <div class="container">
+        <div class="badge">ARADX · AI LAB</div>
+
+        <h1>
+          آینده را با<br>
+          <span>هوش مصنوعی</span> بسازیم
+        </h1>
+
+        <p>
+          اینجا نقطه شروع مسیر ARADX در دنیای هوش مصنوعی است؛
+          مسیری برای یادگیری عمیق، آزمایش ایده‌ها و تبدیل دانش
+          به فناوری‌هایی که می‌توانند مسائل واقعی را حل کنند.
+        </p>
+
+        <div class="buttons">
+          <a class="btn btn-primary" href="#mission">مأموریت ما</a>
+          <a class="btn btn-secondary" href="#projects">چشم‌انداز پروژه‌ها</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="mission">
+      <div class="container">
+        <div class="mission">
+          <div class="section-title">
+            <small>OUR MISSION</small>
+            <h2>مأموریت ARADX AI</h2>
+          </div>
+
+          <p>
+            هدف ما فقط استفاده از ابزارهای هوش مصنوعی نیست؛
+            می‌خواهیم سازوکار آن‌ها را یاد بگیریم، مسائل را
+            تحلیل کنیم و در آینده راهکارهای هوشمند خودمان را بسازیم.
+          </p>
+
+          <p>
+            در این مسیر، یادگیری برنامه‌نویسی، ریاضیات، داده‌ها،
+            تحقیق و ساخت پروژه‌های واقعی اهمیت اساسی دارند.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="learning">
+      <div class="container">
+        <div class="section-title">
+          <small>LEARNING & RESEARCH</small>
+          <h2>مسیر یادگیری و تحقیق</h2>
+          <p class="section-intro">
+            پایه‌های فنی را مرحله‌به‌مرحله تقویت می‌کنیم تا
+            ایده‌های آینده بر دانش و تجربه واقعی تکیه داشته باشند.
+          </p>
+        </div>
+        <div class="grid">
+          <article class="card">
+            <div class="icon">⌨️</div>
+            <h3>برنامه‌نویسی</h3>
+            <p>
+              تقویت Python، حل مسئله و ساخت پروژه‌هایی که
+              مهارت برنامه‌نویسی را به تجربه عملی تبدیل می‌کنند.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="icon">∑</div>
+            <h3>ریاضیات و داده</h3>
+            <p>
+              آشنایی با مبانی ریاضی، تحلیل داده‌ها و ابزارهایی
+              که در درک الگوریتم‌های هوش مصنوعی نقش دارند.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="icon">🧠</div>
+            <h3>هوش مصنوعی</h3>
+            <p>
+              شناخت یادگیری ماشین، شبکه‌های عصبی و روش‌های
+              طراحی سیستم‌های هوشمند؛ همراه با تمرین و تحقیق.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <div class="section-title">
+          <small>THE ROAD AHEAD</small>
+          <h2>پروژه‌های آینده</h2>
+          <p class="section-intro">
+            این بخش برای ایده‌هایی است که در آینده بررسی،
+            طراحی و با یادگیری و تلاش خودمان پیاده‌سازی می‌کنیم.
+          </p>
+        </div>
+
+        <div class="grid">
+          <article class="card project-card">
+            <div class="icon">💡</div>
+            <h3>ایده‌های در دست بررسی</h3>
+            <p>
+              ایده‌هایی برای حل مسائل واقعی با کمک فناوری و هوش مصنوعی.
+            </p>
+            <span class="status">در مرحله ایده‌پردازی</span>
+          </article>
+
+          <article class="card project-card">
+            <div class="icon">🔬</div>
+            <h3>تحقیق و آزمایش</h3>
+            <p>
+              بررسی فناوری‌های جدید و یادگیری از طریق آزمایش‌های آموزشی.
+            </p>
+            <span class="status">در آینده</span>
+          </article>
+
+          <article class="card project-card">
+            <div class="icon">🚀</div>
+            <h3>ساخت محصولات هوشمند</h3>
+            <p>
+              تبدیل آموخته‌ها به محصولاتی کاربردی، پس از آماده‌شدن دانش و مهارت لازم.
+            </p>
+            <span class="status">چشم‌انداز آینده</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <span>© ARADX — AI LAB</span>
+      <a href="index.html">بازگشت به صفحه اصلی ↑</a>
+    </div>
+  </footer>
+
+</body>
+</html>
