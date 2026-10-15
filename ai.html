@@ -459,5 +459,25 @@
 
     <button id="send-btn">ارسال</button>
 </div>
+<script>
+const input = document.getElementById("user-input");
+const sendBtn = document.getElementById("send-btn");
+const messages = document.getElementById("chat-messages");
+
+sendBtn.addEventListener("click", function () {
+    const text = input.value.trim();
+
+    if (text === "") {
+        return;
+    }
+
+    const message = document.createElement("p");
+    message.textContent = "شما: " + text;
+
+    messages.appendChild(message);
+
+    input.value = "";
+});
+</script>
 </body>
 </html>
